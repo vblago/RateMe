@@ -10,8 +10,9 @@ public class Opinion {
     public String point;
     public String q1, q2, q3, q4, q5;
 
-    public Opinion() {
+    public Opinion(int point) {
         setDate();
+        this.point = String.valueOf(point);
         this.q1 = "0";
         this.q2 = "0";
         this.q3 = "0";

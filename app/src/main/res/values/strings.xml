@@ -7,4 +7,12 @@
     <string name="fine_str">Нормально</string>
     <string name="bad_str">Плохо</string>
     <string name="awful_str">Ужасно</string>
+    <string name="main_menu_str">Главное меню</string>
+    <string name="start_testing_str">Запуск тестирования</string>
+    <string name="change_point_number_str">Изменить номер точки</string>
+    <string name="set_point_number_str">Добавить номер точки</string>
+    <string name="point_not_set_str">Прежде чем начать тестирование, введите номер точки</string>
+    <string name="cancel_btn_str">Отмена</string>
+    <string name="save_btn_str">Сохранить</string>
+    <string name="set_point_num_dialog_str">Номер точки</string>
 </resources>

@@ -3,12 +3,13 @@ package ltd.vblago.rateme.activity;
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import ltd.vblago.rateme.R;
+import ltd.vblago.rateme.fragment.MenuFragment;
 import ltd.vblago.rateme.fragment.QuestionFragment;
 import ltd.vblago.rateme.fragment.ResultFragment;
 import ltd.vblago.rateme.model.Opinion;
@@ -20,6 +21,7 @@ import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity implements ActivityCommunication {
 
+    int numPoint;
     Opinion opinion;
     public static final int START = 1;
     @SuppressLint("HandlerLeak")
@@ -41,14 +43,24 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         setContentView(R.layout.activity_main);
         hideUI();
 
-        goToFirstQuestion();
+        goToMenuFragment();
+    }
+
+    private void goToMenuFragment(){
+        MenuFragment menuFragment = new MenuFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.container, menuFragment)
+                .commit();
     }
 
     @Override
     public void goToFirstQuestion(){
-        opinion = new Opinion();
+        opinion = new Opinion(numPoint);
         getSupportFragmentManager()
                 .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, QuestionFragment.newInstance(1))
                 .commit();
     }
@@ -56,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
     private void goToNextQuestion(int question){
         getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
                 .replace(R.id.container, QuestionFragment.newInstance(question))
                 .commit();
     }
@@ -64,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         ResultFragment resultFragment = new ResultFragment();
         getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
                 .replace(R.id.container, resultFragment)
                 .commit();
     }
@@ -110,7 +124,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         });
     }
 
-    private void hideUI() {
+    @Override
+    public void hideUI() {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LOW_PROFILE
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -119,5 +134,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
         );
+    }
+
+    @Override
+    public void setNumPoint(int num) {
+        numPoint = num;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        h.removeMessages(START);
     }
 }
