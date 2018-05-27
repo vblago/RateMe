@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RateMe</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="great_str">Отлично</string>
+    <string name="good_str">Хорошо</string>
+    <string name="fine_str">Нормально</string>
+    <string name="bad_str">Плохо</string>
+    <string name="awful_str">Ужасно</string>
 </resources>
