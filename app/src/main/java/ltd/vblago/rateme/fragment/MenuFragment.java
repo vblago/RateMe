@@ -48,7 +48,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         unbinder = ButterKnife.bind(this, view);
-        SharedPreferences settings = getContext().getSharedPreferences(SHPREF, Context.MODE_PRIVATE);
+        SharedPreferences settings = Objects.requireNonNull(getContext()).getSharedPreferences(SHPREF, Context.MODE_PRIVATE);
         numPoint = settings.getInt("point_num", 0);
         if (numPoint == 0){
             setPointBtn.setText(R.string.set_point_number_str);
@@ -107,7 +107,7 @@ public class MenuFragment extends Fragment {
     }
 
     private void savePointToPref(int num){
-        SharedPreferences sPreferences = getContext().getSharedPreferences(SHPREF, Context.MODE_PRIVATE);
+        SharedPreferences sPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(SHPREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putInt("point_num", num);
         editor.apply();
