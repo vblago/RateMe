@@ -69,7 +69,6 @@ public class QuestionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_question, container, false);
         unbinder = ButterKnife.bind(this, view);
         questionTv.setText(Questions.getQuestion(questionNum));
-
         return view;
     }
 

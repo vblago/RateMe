@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-
 import ltd.vblago.rateme.R;
 import ltd.vblago.rateme.fragment.MenuFragment;
 import ltd.vblago.rateme.fragment.QuestionFragment;
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         hideUI();
-
         goToMenuFragment();
     }
 
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
     @Override
     public void setRate(int question, int rate) {
         h.removeMessages(START);
-        h.sendEmptyMessageDelayed(START, 20_000);
+        h.sendEmptyMessageDelayed(START, 30_000);
         switch (question){
             case 1:
                 opinion.q1 = String.valueOf(rate);
