@@ -44,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         goToMenuFragment();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideUI();
+    }
+
     private void goToMenuFragment(){
         MenuFragment menuFragment = new MenuFragment();
         getSupportFragmentManager()
